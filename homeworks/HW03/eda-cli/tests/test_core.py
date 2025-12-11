@@ -61,30 +61,58 @@ def test_correlation_and_top_categories():
     assert len(city_table) <= 2
 
 def test_new_quality_flags():
-    # Тест для проверки константных колонок
+    """Тест новых эвристик качества данных"""
+    
+    # Тест 1: Константные колонки
     df_constant = pd.DataFrame({
-        "id": [1, 2, 3],
-        "constant_col": [5, 5, 5],  # константная колонка
-        "normal_col": [1, 2, 3],
+        "id": [1, 2, 3, 4],
+        "constant_col": [5, 5, 5, 5],  # константная колонка
+        "normal_col": [1, 2, 3, 4],
+        "mixed_col": [1, 2, 1, 2],
     })
     
     summary = summarize_dataset(df_constant)
     missing_df = missing_table(df_constant)
     flags = compute_quality_flags(summary, missing_df)
     
-    # Проверяем, что флаг has_constant_columns работает
+    # Проверяем новую эвристику
     assert "has_constant_columns" in flags
     assert flags["has_constant_columns"] == True
     
-    # Тест для проверки высокой кардинальности
+    # Тест 2: Высокая кардинальность категориальных признаков
+    # Должны быть СТРОКОВЫЕ значения, а не числовые!
     df_high_card = pd.DataFrame({
         "id": list(range(100)),
-        "high_card_col": list(range(100)),  # уникальные значения
+        "high_card_col": [f"value_{i}" for i in range(100)],  # СТРОКОВЫЕ уникальные значения
+        "low_card_col": ["A", "B"] * 50,  # только 2 уникальных значения
+        "numeric_col": list(range(100)),  # числовая колонка (не должна учитываться)
     })
     
     summary2 = summarize_dataset(df_high_card)
     missing_df2 = missing_table(df_high_card)
     flags2 = compute_quality_flags(summary2, missing_df2)
     
-    # Проверяем, что флаг has_high_cardinality_categoricals работает
+    # Проверяем вторую новую эвристику
     assert "has_high_cardinality_categoricals" in flags2
+    # high_card_col имеет 100 уникальных строковых значений при 100 строках = 100%
+    # numeric_col не учитывается, так как числовая
+    assert flags2["has_high_cardinality_categoricals"] == True
+    
+    # Тест 3: Проверка влияния на quality_score
+    assert "quality_score" in flags
+    assert 0.0 <= flags["quality_score"] <= 1.0
+    # При наличии константной колонки score должен быть уменьшен
+    assert flags["quality_score"] < 1.0
+    
+    # Тест 4: Проверка что числовые колонки не учитываются в has_high_cardinality_categoricals
+    df_only_numeric = pd.DataFrame({
+        "numeric1": list(range(100)),
+        "numeric2": list(range(100, 200)),
+    })
+    
+    summary3 = summarize_dataset(df_only_numeric)
+    missing_df3 = missing_table(df_only_numeric)
+    flags3 = compute_quality_flags(summary3, missing_df3)
+    
+    # В датасете только числовые колонки - флаг должен быть False
+    assert flags3["has_high_cardinality_categoricals"] == False

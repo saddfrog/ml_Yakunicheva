@@ -57,3 +57,16 @@ uv run eda-cli report data/example.csv --out-dir reports
 ```bash
 uv run pytest -q
 ```
+
+## Новые параметры команды `report` (HW03)
+
+### Добавленные эвристики качества:
+- `has_constant_columns` - проверяет наличие колонок, где все значения одинаковые
+- `has_high_cardinality_categoricals` - проверяет категориальные признаки с очень большим числом уникальных значений (>90% от числа строк)
+
+### Добавленные параметры CLI:
+- `--top-k-categories` - количество top-значений для категориальных признаков (по умолчанию: 5)
+- `--min-missing-share` - порог доли пропусков для пометки колонки как проблемной (по умолчанию: 0.1)
+
+### Пример использования с новыми параметрами:
+uv run eda-cli report data/example.csv --out-dir reports_hw03 --top-k-categories 3 --min-missing-share 0.05
