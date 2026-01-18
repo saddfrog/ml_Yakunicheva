@@ -1,0 +1,93 @@
+{
+  "dataset01": {
+    "kmeans": {
+      "params": {
+        "n_clusters": 2,
+        "random_state": 42
+      },
+      "metrics": {
+        "silhouette": 0.5216395622404242,
+        "davies_bouldin": 0.6853295219054457,
+        "calinski_harabasz": 11786.954622671532,
+        "n_clusters": 2,
+        "noise_ratio": 0.0
+      }
+    },
+    "dbscan": {
+      "params": {
+        "eps": 2.0,
+        "min_samples": 3
+      },
+      "metrics": {
+        "silhouette": 0.5216395622404242,
+        "davies_bouldin": 0.6853295219054457,
+        "calinski_harabasz": 11786.954622671532,
+        "n_clusters": 2,
+        "noise_ratio": 0.0
+      }
+    }
+  },
+  "dataset02": {
+    "kmeans": {
+      "params": {
+        "n_clusters": 2,
+        "random_state": 42
+      },
+      "metrics": {
+        "silhouette": 0.3068610017701601,
+        "davies_bouldin": 1.3234721699867644,
+        "calinski_harabasz": 3573.3933329348392,
+        "n_clusters": 2,
+        "noise_ratio": 0.0
+      }
+    },
+    "agglomerative": {
+      "params": {
+        "n_clusters": 2,
+        "linkage": "single"
+      },
+      "metrics": {
+        "silhouette": 0.5213161442555723,
+        "davies_bouldin": 0.34186056281280663,
+        "calinski_harabasz": 7.1843301105428035,
+        "n_clusters": 2,
+        "noise_ratio": 0.0
+      }
+    }
+  },
+  "dataset03": {
+    "kmeans": {
+      "params": {
+        "n_clusters": 3,
+        "random_state": 42
+      },
+      "metrics": {
+        "silhouette": 0.3155447003782518,
+        "davies_bouldin": 1.1577256320598661,
+        "calinski_harabasz": 6957.162639510167,
+        "n_clusters": 3,
+        "noise_ratio": 0.0
+      }
+    },
+    "dbscan": {
+      "params": {
+        "eps": 0.8,
+        "min_samples": 3
+      },
+      "metrics": {
+        "silhouette": 0.3725981452885354,
+        "davies_bouldin": 0.5510597860593662,
+        "calinski_harabasz": 17.19748388112502,
+        "n_clusters": 2,
+        "noise_ratio": 0.0014666666666666667
+      }
+    }
+  },
+  "stability_check": {
+    "dataset": "dataset01",
+    "method": "kmeans",
+    "n_runs": 5,
+    "mean_ari": 1.0,
+    "std_ari": 0.0
+  }
+}
