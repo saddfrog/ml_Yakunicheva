@@ -1,0 +1,12 @@
+{
+    "experiment_id": "E4",
+    "model_config": "{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': True}",
+    "optimizer_config": {
+        "name": "Adam",
+        "lr": 0.001
+    },
+    "dataset": "CIFAR10",
+    "seed": 42,
+    "best_val_accuracy": 0.5545,
+    "test_accuracy": 0.5489
+}

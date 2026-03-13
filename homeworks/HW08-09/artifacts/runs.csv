@@ -1,0 +1,8 @@
+experiment_id,dataset,seed,model_summary,optimizer,lr,momentum,weight_decay,epochs_trained,best_val_accuracy,best_val_loss,training_time
+E1,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': False}",Adam,0.001,0.0,0.0,15,0.5314,2.0498734924316406,136.22224760055542
+E2,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.3, 'use_batchnorm': False}",Adam,0.001,0.0,0.0,15,0.538,1.3271459058761597,124.38441228866577
+E3,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': True}",Adam,0.001,0.0,0.0,15,0.5404,1.680366833114624,117.85202360153198
+E4,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': True}",Adam,0.001,0.0,0.0,13,0.5545,1.3197574451446534,97.52450799942017
+O1,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': True}",Adam,0.1,0.0,0.0,8,0.4816,1.51327751121521,62.4481418132782
+O2,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': True}",Adam,1e-05,0.0,0.0,8,0.4969,1.459735325241089,59.9456787109375
+O3,CIFAR10,42,"{'input_size': 3072, 'hidden_sizes': [512, 256], 'num_classes': 10, 'dropout_rate': 0.0, 'use_batchnorm': True}",SGD,0.01,0.9,0.0001,12,0.5423,1.4500709789276123,90.52693367004395
