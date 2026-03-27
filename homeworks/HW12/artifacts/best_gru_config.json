@@ -1,0 +1,11 @@
+{
+    "window_size": 24,
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.2,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "epochs_trained": 18,
+    "best_val_loss": 0.09465585605186574,
+    "seed": 42
+}
