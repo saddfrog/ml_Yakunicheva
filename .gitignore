@@ -55,3 +55,15 @@ logs/
 *.tmp
 *.bak
 *.old
+
+# Данные проекта (большие файлы, не коммитятся)
+project/data/
+*.zip
+*.tar.gz
+*.parquet
+
+# Артефакты обучения
+project/artifacts/
+*.pt
+*.pth
+*.joblib

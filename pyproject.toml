@@ -1,0 +1,24 @@
+[project]
+name = "aie-student-project"
+version = "0.1.0"
+description = "Сравнение архитектур CNN для классификации таблеток"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch",
+    "torchvision",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "jupyter",
+    "scikit-learn",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+    "kagglehub",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
