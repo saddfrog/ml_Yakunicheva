@@ -57,7 +57,7 @@ logs/
 *.old
 
 # Данные проекта (большие файлы, не коммитятся)
-project/data/
+project/data/raw/
 *.zip
 *.tar.gz
 *.parquet
