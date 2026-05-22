@@ -63,7 +63,7 @@ project/data/
 *.parquet
 
 # Артефакты обучения
-project/artifacts/
+#project/artifacts/
 *.pt
 *.pth
 *.joblib

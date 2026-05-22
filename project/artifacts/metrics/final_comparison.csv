@@ -1,0 +1,4 @@
+Model,Best Val Acc,Test Acc,Test F1,Time (min)
+ResNet50,0.9970,0.9985,0.9985,-
+EfficientNet_B0,0.9970,0.9955,0.9956,-
+MobileNet_V3,0.9926,0.9851,0.9842,-
