@@ -1,0 +1,20 @@
+FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+
+WORKDIR /app
+
+# Копируем зависимости
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем код и модели
+COPY src/ ./src/
+COPY artifacts/models/ ./artifacts/models/
+
+# Создаём папку для логов
+RUN mkdir -p /app/logs
+
+# Открываем порт
+EXPOSE 8000
+
+# Запускаем сервис
+CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
