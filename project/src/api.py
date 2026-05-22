@@ -4,17 +4,40 @@ import uvicorn
 import os
 import time
 import logging
+import sys
+import torch  # Добавлено для health-check
 
-# Настройка логирования
-logging.basicConfig(level=logging.INFO)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Создаём папку для логов
+LOG_DIR = "logs"
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Настройка логирования (только один раз!)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(os.path.join(LOG_DIR, "app.log"), encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+
 logger = logging.getLogger(__name__)
 
-# Пути к моделям (можно через переменные окружения)
+# Путь к папке project (где лежит api.py)
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+# Путь к корню репозитория (на уровень выше project)
+REPO_ROOT = os.path.dirname(PROJECT_DIR)
+
 MODEL_PATHS = {
-    'ResNet50': '../artifacts/models/ResNet50_best.pt',
-    'EfficientNet_B0': '../artifacts/models/EfficientNet_B0_best.pt',
-    'MobileNet_V3': '../artifacts/models/MobileNet_V3_best.pt'
+    'ResNet50': os.path.join(REPO_ROOT, 'artifacts', 'models', 'ResNet50_best.pt'),
+    'EfficientNet_B0': os.path.join(REPO_ROOT, 'artifacts', 'models', 'EfficientNet_B0_best.pt'),
+    'MobileNet_V3': os.path.join(REPO_ROOT, 'artifacts', 'models', 'MobileNet_V3_best.pt')
 }
+
+logger.info(f"REPO_ROOT: {REPO_ROOT}")
+logger.info(f"Model paths: {MODEL_PATHS}")
 
 # Создаём приложение
 app = FastAPI(

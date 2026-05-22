@@ -3,18 +3,17 @@ FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 WORKDIR /app
 
 # Копируем зависимости
-COPY requirements.txt .
+COPY project/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем код и модели
-COPY src/ ./src/
-COPY artifacts/models/ ./artifacts/models/
+# Копируем код, модели и CSV с названиями
+COPY project/src/ ./src/
+COPY project/artifacts/models/ ./artifacts/models/
+COPY project/data/raw/ogyeiv2/extracted_sentences.csv ./data/raw/ogyeiv2/
 
 # Создаём папку для логов
 RUN mkdir -p /app/logs
 
-# Открываем порт
 EXPOSE 8000
 
-# Запускаем сервис
 CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
